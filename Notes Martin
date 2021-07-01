@@ -1,0 +1,43 @@
+1. Install the Consul client on the Vault server via apt-repository
+
+2. In order to connect Vault to the Consul client we need to use the local host address: 127.0.0.1
+
+3. Configure Consul client which is located on the Vault server to talk to the Consul server
+
+4. Make the configuration of Consul work and form a cluster. Do this by understanding the paramters of the configuration of Consul
+
+The Consul machine should retry the join to the others machine's IPs
+
+Example:
+
+Consul 1 - IP 1
+Consul 2 - IP 2
+Consul 3 - IP 3
+
+Consul 1 should retry with IP 2 & IP 3 and so on
+
+NOT WORKING FOR MY env:
+cat << EOF > /etc/consul.d/server_node_2_config.json
+{
+ "bind_addr": "172.20.30.12", => the consul's machine address
+ "datacenter": "dc-west",
+ "data_dir": "/opt/consul",
+ "log_level": "INFO",
+ "enable_syslog": true,
+ "enable_debug": true,
+ "node_name": "dc-west-consul-server-two",
+ "server": true, => it is not an agent server
+ "client_addr": "0.0.0.0", 
+ "bootstrap_expect": 3, => 2 consul servers trying to rejoin, it's not going to work. 3 Nodes are needed at least to be up for it to work
+ "rejoin_after_leave": true,
+ "ui": true,
+ "retry_join": [
+    "172.20.30.11","172.20.30.13"
+    ]
+}
+EOF
+
+5. Think on how can I provision different configuration files to different consul machines
+
+If Vault and Consul are in different networks, a router needs to be used for them to communicate one with each others
+In my case, I should use the same network for Vault and Consul to make them communicate to each other
