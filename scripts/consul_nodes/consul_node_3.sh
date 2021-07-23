@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-
-apt-get install consul
+which consul || {
+    curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+    sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+    apt-get install -y consul
+}
 
 mkdir -p /var/consul
 chown -R consul:consul /var/consul
@@ -18,8 +19,8 @@ tee consul.hcl <<EOF
     "data_dir": "/var/consul/data",
     "bind_addr": "192.168.56.143",
     "client_addr": "0.0.0.0",
-    "advertise_addr": "127.0.0.1",
-    "bootstrap_expect": 1,
+    "advertise_addr": "192.168.56.143",
+    "bootstrap_expect": 3,
     "retry_join": ["192.168.56.141","192.168.56.142"],
     "ui": true,
     "log_level": "DEBUG",
@@ -28,4 +29,5 @@ tee consul.hcl <<EOF
 }
 EOF
 
-sudo systemctl start consul
+pidof consul && systemctl stop consul
+systemctl start consul
