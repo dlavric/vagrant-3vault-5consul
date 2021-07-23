@@ -41,3 +41,48 @@ EOF
 
 If Vault and Consul are in different networks, a router needs to be used for them to communicate one with each others
 In my case, I should use the same network for Vault and Consul to make them communicate to each other
+
+
+Figure out what is the purpose of the network mask in my environment
+
+Consul
+192.168.56.141 
+
+192.168.56.0 - Network address
+0.0.0.141 - Host address
+
+Vault
+192.168.56.151 /24
+
+192.168.56.0 - Network address
+0.0.0.151 - Host address
+
+
+The subnet mask is used by the router to cover up the network address
+
+The practice of dividing a network into two or more networks is called subnetting.
+
+TO DO: Review the Networking+ book the chapter to determine the network address and do some exercises 
+on paper
+
+Ipv4 - has 32 bits
+
+The IP address is divided to 4 ... it has 4 parts and I need to figure out what are those parts??
+
+What is the default gateway?
+
+What is broadcast?
+
+Learn about the OSI model
+
+Learn about TCP/IP model
+
+Compare two models 
+
+Layer 2 / Layer 3 I should understand what each layer does and compare them
+
+What retry join of Consul does?
+
+What do I need to do to save the file in `vi`?
+
+If a service is listening on localhost, from where it can be accessed?
