@@ -69,20 +69,67 @@ Ipv4 - has 32 bits
 
 The IP address is divided to 4 ... it has 4 parts and I need to figure out what are those parts??
 
-What is the default gateway?
+1. What is the default gateway?
+Node that allows 2 or more machines to communicate to each other when in different networks
+Is the default route taken if there is no other specification of doing differently.
 
-What is broadcast?
+Default gateways are essentially routing systems that ensure the request is sent 
+to the right destination, even if the sender and receiver use different network protocols.
 
-Learn about the OSI model
+2. What is broadcast?
+Broadcasting is a method of transferring a message to all recipients simultaneously
 
-Learn about TCP/IP model
+3. Learn about the OSI model
 
-Compare two models 
+OSI 7 layers
+Open Systems Interconnection
 
-Layer 2 / Layer 3 I should understand what each layer does and compare them
+There are 7 layers that computer use to communicate in the network.
 
-What retry join of Consul does?
+7 - Human interaction - application level where they can access the network
+6 - Presentation - data is in a usable format and is where data encryption occurs 
+5 - Session - maintains connections and is responsible for controlling parts and sessions
+4 - Transport - transmits data using transmission protocols TCP / UDP
+3 - Network - Decides which physical path the data will take
+2 - Data link - Defines the format of data on the network
+1 - Physical - Transmits raw bit stream over the physical medium
 
-What do I need to do to save the file in `vi`?
+4. Learn about TCP/IP model
 
-If a service is listening on localhost, from where it can be accessed?
+Application Layer 7 - Human interaction - application level where they can access the network
+Application Layer 6 - Presentation - data is in a usable format and is where data encryption occurs 
+Application Layer 5 - Session - maintains connections and is responsible for controlling parts and sessions
+
+Transport Layer 4 - Transport - transmits data using transmission protocols TCP / UDP
+
+Internet Layer 3 - Network - Decides which physical path the data will take
+
+Network access Layer 2 - Data link - Defines the format of data on the network
+Network access Layer 1 - Physical - Transmits raw bit stream over the physical medium
+
+5. Compare two models 
+
+TCP/IP is older than the OSI model 
+TCP/IP is simple than OSI model - collapsing some levels from OSI model
+
+6. How many bits are in one byte?
+
+1 byte = 8 bit
+
+6. Layer 2 / Layer 3 I should understand what each layer does and compare them
+
+7. What retry join of Consul does?
+
+8. What do I need to do to save the file in `vi`? top priority and check if it saved
+
+9. If a service is listening on localhost, from where it can be accessed?
+
+10. What should be the address for the TCP to listen to in the vault config listener "tcp" ?
+Aug 03 13:09:57 vault-1 vault[2647]: Error parsing cluster address 127.0.0.1:8201: parse "127.0.0.1:8201": invalid URI for request
+
+
+systemctl status vault
+
+journalctl -u vault
+
+shift+G
