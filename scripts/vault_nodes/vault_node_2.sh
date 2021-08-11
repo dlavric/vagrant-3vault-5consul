@@ -49,13 +49,13 @@ storage "consul" {
 
 # HTTP listener
 listener "tcp" {
-  address          = "127.0.0.1:8200"
-  cluster_address  = "127.0.0.1:8201"
+  address          = "0.0.0.0:8200"
+  cluster_address  = "0.0.0.0:8201"
   tls_disable      = "true"
 }
 
-api_addr =  "127.0.0.1:8200"
-cluster_addr = "127.0.0.1:8201"
+api_addr =  "http://127.0.0.1:8200"
+cluster_addr = "http://127.0.0.1:8201"
 EOF
 
 sudo chown --recursive vault:vault /etc/vault.d
