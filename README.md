@@ -1,40 +1,48 @@
-# vagrant-3vault-5consul
-Vagrant builds 3 vault and 5 consul
+# Vault HA with 3x Vault and 3x Consul 
+
+Vagrant builds 3x Vault and 3x Consul cluster
 
 This repository has been created for the purpose 
 of learning the following [tutorial](https://learn.hashicorp.com/tutorials/vault/deployment-guide?in=vault/day-one-consul).
 
-List what the package that has installed 
-$ dpkg-query -L vault
 
-Do not ask for confirmation when destroying the machine
-$ vagrant destroy -f
+## Pre-requirements 
+[X] Install [VirtualBox] (https://www.virtualbox.org/wiki/Downloads)
 
-Check the Vault configuration file
-$ cat /etc/vault.d/vault.hcl
+[X] Install [Vagrant] (https://www.vagrantup.com/downloads)
 
-List the package that has been installed
-$ dpkg-query -L consul
+## Instructions
 
-$ sudo su -
-$ cp /usr/lib/systemd/system/consul.service /etc/systemd/system/consul.service
+1. Clone this repository:
+`git clone git@github.com:dlavric/vagrant-3vault-5consul.git`
 
-systemctl start consul
+2. Go to the directory of the repository:
+`cd vagrant-3vault-5consul`
 
-sudo systemctl status consul
+3. Create the guest machines with Vagrant:
+`vagrant up`
+
+4. Connect to the `vault-1` machine:
+`vagrant ssh vault-1`
+
+5. Check the status of Vault:
+`systemctl status vault`
+
+6. Check if there are any errors:
+`journalctl -u vault`
+
+7. Check the `Consul members`:
+`consul members`  
+
+8. Destroy the Vagrant machine:
+`vagrant destroy -f`
 
 
-vagrant@consul-3:~$ sudo su -
-root@consul-3:~# cat /etc/hosts
-127.0.0.1       localhost
-127.0.1.1       vagrant.vm      vagrant
+## Additional information
 
-# The following lines are desirable for IPv6 capable hosts
-::1     localhost ip6-localhost ip6-loopback
-ff02::1 ip6-allnodes
-ff02::2 ip6-allrouters
-127.0.2.1 consul-3 consul-3
-root@consul-3:~# cp /etc/hosts /vagrant
+- List what the package that has installed 
+```
+dpkg-query -L vault
+dpkg-query -L consul
+```
 
-
-the Host IP needs to be setup properly when I create more than one machine.
