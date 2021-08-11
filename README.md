@@ -7,9 +7,9 @@ of learning the following [tutorial](https://learn.hashicorp.com/tutorials/vault
 
 
 ## Pre-requirements 
-[ X ] Install [VirtualBox] (https://www.virtualbox.org/wiki/Downloads)
+- [X] Install [VirtualBox] (https://www.virtualbox.org/wiki/Downloads)
 
-[ X ] Install [Vagrant] (https://www.vagrantup.com/downloads)
+- [X] Install [Vagrant] (https://www.vagrantup.com/downloads)
 
 ## Instructions
 
