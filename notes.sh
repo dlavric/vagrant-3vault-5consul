@@ -54,3 +54,33 @@ root@consul-3:~# cp /etc/hosts /vagrant
 
 the Host IP needs to be setup properly when I create more than one machine.
 
+export VAULT_ADDR="http://127.0.0.1:8200"
+
+vault operator init \
+    -key-shares=1 \
+    -key-threshold=1
+
+Unseal Key 1: uOhHwlYGEF2Wl+Zhv0QMRpVtd0P+YYrH8GInWnVG++4=
+
+Initial Root Token: s.IUQclMrZKWTHNjtE8zyBj4su
+
+vault operator unseal uOhHwlYGEF2Wl+Zhv0QMRpVtd0P+YYrH8GInWnVG++4=
+
+
+
+vagrant@vault-3:~$ vault operator unseal xIcZkGcd+BUmTvZyNHW4TD8UaxFy8OIUOFQshHhJEtY=
+Key                    Value
+---                    -----
+Seal Type              shamir
+Initialized            true
+Sealed                 false
+Total Shares           1
+Threshold              1
+Version                1.7.0
+Storage Type           consul
+Cluster Name           vault-cluster-59b45975
+Cluster ID             602a0242-21d5-2b82-7751-a43eb57a5136
+HA Enabled             true
+HA Cluster             https://127.0.0.1:8201
+HA Mode                standby
+Active Node Address    http://127.0.0.1:8200

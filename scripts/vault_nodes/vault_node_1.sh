@@ -54,8 +54,8 @@ listener "tcp" {
   tls_disable      = "true"
 }
 
-api_addr =  "http://127.0.0.1:8200"
-cluster_addr = "http://127.0.0.1:8201"
+api_addr =  "http://192.168.56.151:8200"
+cluster_addr = "http://192.168.56.151:8201"
 EOF
 
 sudo chown --recursive vault:vault /etc/vault.d

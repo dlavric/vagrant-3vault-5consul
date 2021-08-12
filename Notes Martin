@@ -120,16 +120,45 @@ TCP/IP is simple than OSI model - collapsing some levels from OSI model
 
 7. What retry join of Consul does?
 
+Allows retrying a join until it is successful. 
+Once it joins successfully to a member in a list of members it will never attempt to join again
+The client will make the request to any servers listed in the -join or -retry-join option
+
 8. What do I need to do to save the file in `vi`? top priority and check if it saved
+Hit ESC
+write :w! - save the file 
+write :q! - quit without saving
+
+Save and Quit: :wq!
 
 9. If a service is listening on localhost, from where it can be accessed?
 
 10. What should be the address for the TCP to listen to in the vault config listener "tcp" ?
 Aug 03 13:09:57 vault-1 vault[2647]: Error parsing cluster address 127.0.0.1:8201: parse "127.0.0.1:8201": invalid URI for request
 
+The value can be set as 0.0.0.0:8200 to listen for requests on all interfaces. 
+Using 0.0.0.0:8200 it may not be the good choice from a security standpoint
 
-systemctl status vault
+cluster_addr=http://127.0.0.1:8201
 
-journalctl -u vault
+11. How many listeners Vault has?
+Vault is using 8200 and 8201 
 
-shift+G
+8200 - is used for client communciation (front door of a store)
+8201 - cluster and node to node communication (the backdoor from a store where i receive goods or deliver goods to otehr stores)
+
+12. Find what is the difference between the address and api_addr, cluster_address and cluster_addr in the Vault config.
+
+13. What is TLS and what is a TLS certificate?
+
+14. Find the command that generates TLS certificates and understand it.
+
+15. What is a CA ? What is intermediate Certificate (CA)
+
+16. How do we sign a certificate? What is a CSR?
+
+Generate a certificate and put the correct DNS and IP SANs 
+
+17. What is a .gitignore file and how do I use it?
+
+read the article from Martin
